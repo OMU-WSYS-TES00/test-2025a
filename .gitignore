@@ -1,6 +1,9 @@
-# If you prefer the allow list template instead of the deny list, see community template:
-# https://github.com/github/gitignore/blob/main/community/Golang/Go.AllowList.gitignore
-#
+# Go Workshop 2025 - Go言語特化版 .gitignore
+
+# =============================================================================
+# Go言語関連
+# =============================================================================
+
 # Binaries for programs and plugins
 *.exe
 *.exe~
@@ -11,11 +14,8 @@
 # Test binary, built with `go test -c`
 *.test
 
-# Code coverage profiles and other test artifacts
+# Output of the go coverage tool, specifically when used with LiteIDE
 *.out
-coverage.*
-*.coverprofile
-profile.cov
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
@@ -24,9 +24,175 @@ profile.cov
 go.work
 go.work.sum
 
-# env file
-.env
+# =============================================================================
+# Web開発関連（Go + HTML）
+# =============================================================================
 
-# Editor/IDE
-# .idea/
-# .vscode/
+# SQLite databases (実行時生成される学習用DB)
+*.db
+*.sqlite
+*.sqlite3
+
+# データファイル（学習課題で生成される）
+data/
+logs/
+uploads/
+*.json.bak
+*.txt.bak
+
+# 一時的なWebファイル
+.tmp/
+temp/
+
+# =============================================================================
+# エディタ・IDE
+# =============================================================================
+
+# Visual Studio Code
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# GoLand/IntelliJ
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Vim
+*.swp
+*.swo
+*~
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# =============================================================================
+# OS生成ファイル
+# =============================================================================
+
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+
+# =============================================================================
+# GitHub Codespaces関連
+# =============================================================================
+
+# Codespaces設定（個人設定は除外）
+.devcontainer/devcontainer.local.json
+
+# =============================================================================
+# ログファイル
+# =============================================================================
+
+# Application logs
+*.log
+logs/
+log/
+
+# デバッグファイル
+debug
+debug.log
+debug.out
+
+# =============================================================================
+# 学習関連（自動生成・一時ファイル）
+# =============================================================================
+
+# Make生成物
+build/
+dist/
+bin/
+
+# テスト関連
+coverage.txt
+coverage.html
+coverage.out
+
+# プロファイリング
+*.prof
+*.pprof
+
+# 証明書・キー（学習用の一時的なもの）
+*.pem
+*.key
+*.crt
+*.cert
+
+# =============================================================================
+# 環境設定ファイル（機密情報を含む可能性）
+# =============================================================================
+
+# 環境変数ファイル
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# 設定ファイル（機密情報含む）
+config.local.json
+secrets.json
+
+# =============================================================================
+# バックアップファイル
+# =============================================================================
+
+# 自動バックアップ
+*.backup
+*.bak
+*.old
+*.orig
+
+# =============================================================================
+# パッケージマネージャ（不要だが念のため）
+# =============================================================================
+
+# npm（HTMLプレビューで使用する可能性）
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# =============================================================================
+# 学習者が追加するファイル用（コメントアウト例）
+# =============================================================================
+
+# 個人的なメモファイル
+# personal-notes.md
+# learning-log.md
+
+# 実験的なコード
+# experimental/
+# sandbox/
+
+# 提出前の準備ファイル
+# submission-prep/
