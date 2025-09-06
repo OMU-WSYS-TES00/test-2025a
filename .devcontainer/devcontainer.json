@@ -1,0 +1,113 @@
+{
+  "name": "Go Programming Workshop Environment 2025 - 初学者最適化版",
+  "image": "mcr.microsoft.com/devcontainers/go:1-1.21-bullseye",
+  
+  "features": {
+    "ghcr.io/devcontainers/features/git:1": {
+      "version": "latest",
+      "ppa": true
+    },
+    "ghcr.io/devcontainers/features/github-cli:1": {
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "18",
+      "nvmVersion": "latest"
+    },
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "version": "latest",
+      "enableNonRootDocker": "true",
+      "dockerDashComposeVersion": "v2"
+    },
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": "true",
+      "configureZshAsDefaultShell": "true",
+      "installOhMyZsh": "true",
+      "upgradePackages": "true"
+    }
+  },
+  
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "golang.go",
+        "ms-vscode.live-share",
+        "ritwickdey.liveserver",
+        "ms-vscode.vscode-json",
+        "ms-vscode.hexeditor",
+        "GitHub.vscode-github-actions",
+        "ms-vscode.vscode-typescript-next",
+        "bradlc.vscode-tailwindcss",
+        "formulahendry.code-runner",
+        "esbenp.prettier-vscode",
+        "redhat.vscode-yaml",
+        "ms-vscode.vscode-yaml",
+        "formulahendry.auto-rename-tag",
+        "ms-ceintl.vscode-language-pack-ja"
+      ],
+      "settings": {
+        "go.gopath": "/go",
+        "go.goroot": "/usr/local/go",
+        "go.toolsManagement.checkForUpdates": "local",
+        "go.useLanguageServer": true,
+        "go.formatTool": "goimports",
+        "go.lintTool": "golangci-lint",
+        "go.testFlags": ["-v", "-race"],
+        "go.buildFlags": ["-v"],
+        "go.vetFlags": ["-v"],
+        "go.testTimeout": "30s",
+        "go.coverOnSave": false,
+        "go.coverOnSingleTest": false,
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+          "source.organizeImports": true,
+          "source.fixAll": true
+        },
+        "editor.rulers": [80, 120],
+        "editor.tabSize": 4,
+        "editor.insertSpaces": false,
+        "files.eol": "\n",
+        "files.autoSave": "onWindowChange",
+        "terminal.integrated.defaultProfile.linux": "zsh",
+        "terminal.integrated.profiles.linux": {
+          "zsh": {
+            "path": "/bin/zsh"
+          }
+        },
+        "git.autofetch": true,
+        "git.enableSmartCommit": true,
+        "locale": "ja",
+        "files.encoding": "utf8",
+        "files.associations": {
+          "*.go": "go",
+          "*.mod": "go.mod",
+          "*.sum": "go.sum"
+        }
+      }
+    }
+  },
+  
+  "forwardPorts": [3000, 5500, 8080, 8090, 9000],
+  
+  "portsAttributes": {
+    "8080": {
+      "label": "Go Web Server", 
+      "onAutoForward": "notify"
+    },
+    "9000": {
+      "label": "Debug Server",
+      "onAutoForward": "silent"
+    }
+  },
+  
+  "postCreateCommand": "bash .devcontainer/setup.sh",
+  "postStartCommand": "git config --global --add safe.directory /workspaces/* && echo '🚀 Go Workshop 2025 日本語対応環境が準備完了しました！'",
+  
+  "remoteUser": "vscode",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  
+  "mounts": [
+    "source=go-mod-cache,target=/go/pkg/mod,type=volume",
+    "source=${localWorkspaceFolder}/.devcontainer,target=/workspaces/.devcontainer,type=bind"
+  ]
+}
